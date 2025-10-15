@@ -3,10 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jankenpo</title>
-    
+    <title>Jakenpo</title>
+        <link rel="stylesheet" href="RPS.css">
+
 </head>
 <body>
+
+    <h1 class="title">Welcome to rock paper scissors</h1>
+    <div class="button-container">
+        <div class="rpsImages">
+    <button onclick="Choosing('Rock')">
+        <img src="images/rock.png" alt="Rock">
+</button>
+
+    <button onclick="Choosing('Paper')">
+            <img src="images/paper.jpg" alt="Paper">
+</button>
     
+<button onclick="Choosing('Scissors')">
+    <img src="images/scissor.png" alt="Scissors">
+</button>
+    </div>
+    </div>
+
+    <div class="scoring">
+    <div id="result"></div>
+    <div id ="score">
+        <h3>Score:</h3>
+        <p> Your - <span id ="playerScore">0</span></p>
+        <p>Computer - <span id= "computerScore">0</span></p> 
+        <p>Ties-<span id = "tieScore">0</span></p>
+    </div>
+</div>
+    
+
+    <script>
+        const jaken = ["Rock","Paper","Scissors"];
+        let playerScore = 0;
+        let compScore = 0;
+        let tieScore = 0;
+
+        function Choosing(playerChoice){
+            const compChoice = jaken[Math.floor(Math.random() * 3)];
+            let result = "";
+        
+        if (playerChoice === compChoice){
+            result = "uh oh a tie, yall suck";
+            tieScore++
+        } else if (
+            (playerChoice === "Rock" && compChoice ==="Scissors") ||
+            (playerChoice === "Paper" && compChoice === "Rock")||
+            (playerChoice === "Scissors" && compChoice === "Paper")
+         ) {
+            result = `You win ${playerChoice} wins against ${compChoice}`
+            playerScore++
+         }
+         else {
+            result = `You lost ${compChoice} wins against ${playerChoice}`;
+            compScore++
+         }
+            document.getElementById('result').innerText = result;
+            document.getElementById(`playerScore`).innerText = playerScore;
+            document.getElementById(`computerScore`).innerText = compScore;
+            document.getElementById(`tieScore`).innerText = tieScore;
+        }
+    </script>
+    
+
 </body>
 </html>
